@@ -1,5 +1,5 @@
 TODO:
-# start the ball on top of the paddle
+# start the ball on top of the paddle (and add text that say how to start)
 # make hit wall sound
 # when the ball hit more brick in compo make the hit sound pitch higher
 
@@ -40,14 +40,16 @@ TODO:
 # time mode
 
 # effects:
-# 3d look alike bricks
 # Particle effects for brick breaks
+# Rotate particle effects
 
 # Ball trail effects
-# make the ball shining (with pulse )
+# make the ball shining (with pulse)
 # Particle sparks on ball bounce
 
 # pulse animation to the bricks
+
+# 3d look alike bricks
 
 # ball shadow
 # ball lines (rolling effect)
