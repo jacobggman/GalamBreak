@@ -2,12 +2,41 @@ TODO:
 # start the ball on top of the paddle (and add text that say how to start)
 # make hit wall sound
 # when the ball hit more brick in compo make the hit sound pitch higher
+# add more songs
 
+ROADMAP:
+- clean the code
+- write the todos here
 
+- powerups
 
-# IDEAs:
+- main manu
+    - ask for a name in the start of the program
+    - select play
+- go back to main menu
+- add leaderboard to main menu
 
-# texture
+- add co op mode
+- add time mode (and leaderboard)
+
+- 1 vs 1
+
+- server
+    - can play 1 vs 1 and co op
+        - make host menu
+        - list of servers manu
+    - server leaderboard
+
+# effects:
+# Rotate brick particle effects
+# Ball trail effects
+# make the ball shining (with pulse)
+# Particle sparks on ball bounce
+# pulse animation to the bricks
+
+# Control customization
+# Statistics tracking (total bricks broken, time played)
+
 
 # powerups:
 # Multi-Ball, Fire Ball - Ball breaks through multiple bricks without bouncing, Sticky Ball - Ball sticks to paddle, letting player aim shots, Giant Ball, Explosive Ball, Ghost Ball - Ball passes through specific colored bricks
@@ -15,60 +44,3 @@ TODO:
 # Column Clear - Destroys entire vertical column, Row Clear - Destroys entire horizontal row, Shield Bottom - Creates temporary barrier below paddle
 # Extra Life - Gives player additional life, Point Multiplier - Doubles points for limited time, Gravity Change - Temporarily alters ball physics, Brick Shuffle - Rearranges remaining bricks
 # Gold Brick - Requires multiple hits but gives bonus points
-
-# main menu
-
-# local leaderboard
-
-# co op (local)
-# co op (multiplayer)
-
-# 1 vs 1 (each player have ball and he need to pass it to the other side) (multiplayer and local)
-
-# more sounds
-
-# (Tournament system)
-# Team vs Team (2v2, 3v3)
-
-# server
-
-# my music
-
-# world leaderboard
-
-# story mode (levels, bricks that shot, movable bricks, Portal bricks?
-# time mode
-
-# effects:
-# Particle effects for brick breaks
-# Rotate particle effects
-
-# Ball trail effects
-# make the ball shining (with pulse)
-# Particle sparks on ball bounce
-
-# pulse animation to the bricks
-
-# 3d look alike bricks
-
-# ball shadow
-# ball lines (rolling effect)
-
-
-# skins (and a shop)
-# Color schemes
-# backgrounds
-# Statistics tracking (total bricks broken, time played)
-# Achievement system
-
-# other:
-# chat while waiting
-# Emotes/Quick chat
-# Spectator mode
-# Match history
-# rank matchmaking
-# logic (and guest mode)
-# Server browser
-# Level editor
-# Control customization
-# Difficulty settings?
