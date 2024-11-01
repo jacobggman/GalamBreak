@@ -1,3 +1,5 @@
+from pygame import Color
+
 from brick import Brick
 
 

@@ -1,6 +1,7 @@
 import random
 
 import pygame
+from pygame import Color
 
 from ball import Ball
 from game_object import GameObject
@@ -38,6 +39,7 @@ class ScoreKeeper:
 class Game(GameObject):
     def __init__(self, screen):
         super().__init__(screen)
+        self.falling_bricks = None
         self.paddle = None
         self.ball = None
         self.bricks = None
@@ -65,6 +67,7 @@ class Game(GameObject):
         self.paddle = Paddle(self.screen)
         self.ball = Ball(self.screen)
         self.bricks = []
+        self.falling_bricks = []
         if restart_score:
             self.score_keeper = ScoreKeeper()
         for y in range(11):
@@ -77,6 +80,11 @@ class Game(GameObject):
         keys = pygame.key.get_pressed()
 
         self.score_msg = f'Score: {self.score_keeper.get_score()}'
+
+        for i, falling_brick in enumerate(self.falling_bricks):
+            falling_brick.update(delta_time)
+            if falling_brick.y + falling_brick.height > self.screen.height:
+                self.falling_bricks.pop(i)
 
         if self.ball.is_down():
             self.score_msg += "   press R to restart"
@@ -102,6 +110,21 @@ class Game(GameObject):
                 self.bricks.pop(i)
                 pygame.mixer.Sound.play(self.hit_brick_sound)
 
+                # Split brick into small bricks
+                SPLITS = 2
+                FORCE_SCALAR = 0.03
+                for x in range(2 ** SPLITS):
+                    for y in range(2 ** SPLITS):
+                        new_width = rect.width / (2 ** SPLITS)
+                        new_height = rect.height / (2 ** SPLITS)
+                        b = Brick(rect.x + new_width*x, rect.y + new_height*y, new_width, new_height, self.screen, rect.color)
+
+                        v = (b.x + b.width) - self.ball.x, (b.y + b.height) - self.ball.y
+                        magnitude = (v[0]**2 + v[1]**2)**0.5
+
+                        b.add_force((v[0] / magnitude) * FORCE_SCALAR, (v[1] / magnitude) * FORCE_SCALAR)
+                        self.falling_bricks.append(b)
+
         if len(self.bricks) == 0:
             self.load_game(restart_score=False)
 
@@ -109,6 +132,9 @@ class Game(GameObject):
         score_surf = self.test_font.render(self.score_msg, False, (64, 64, 64))
         score_rect = score_surf.get_rect(center=(self.screen.width / 2, self.screen.height - 200))
         self.screen.blit(score_surf, score_rect)
+
+        for falling_brick in self.falling_bricks:
+            falling_brick.draw()
 
         self.paddle.draw()
         for brick in self.bricks:
