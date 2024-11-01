@@ -18,4 +18,4 @@ class Paddle(Brick):
     def update(self, delta_time):
         self.x += self.x_vel * delta_time * self.move_speed
         self.x = min(self.x, self.screen.width - self.width)
-        self.x = max(self.x, self.height * -1)
+        self.x = max(self.x, 0)
