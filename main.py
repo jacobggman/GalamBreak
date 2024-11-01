@@ -54,10 +54,12 @@ class Game(GameObject):
 
     @staticmethod
     def random_color_generator():
+        # TODO:
+        #  Fix too dark color
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)
-        return r, g, b
+        return Color(r, g, b)
 
     def load_game(self, restart_score=True):
         self.paddle = Paddle(self.screen)
@@ -139,7 +141,7 @@ def main():
 
         game.update(delta_time)
 
-        screen.fill("black")
+        screen.fill(Color(25, 25, 25))
         game.draw()
 
         # flip() the display to put your work on screen

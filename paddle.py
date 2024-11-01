@@ -11,7 +11,7 @@ class Paddle(Brick):
         y = screen.height - 50
         width = self.DEFAULT_WIDTH
         height = self.DEFAULT_HEIGHT
-        super().__init__(x, y, width, height, screen, "white")
+        super().__init__(x, y, width, height, screen, Color(255, 255, 255))
         self.move_speed = self.DEFAULT_MOVE_SPEED
         self.x_vel = 0
 
