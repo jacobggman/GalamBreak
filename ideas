@@ -1,0 +1,72 @@
+TODO:
+# start the ball on top of the paddle
+# make hit wall sound
+# when the ball hit more brick in compo make the hit sound pitch higher
+
+
+
+# IDEAs:
+
+# texture
+
+# powerups:
+# Multi-Ball, Fire Ball - Ball breaks through multiple bricks without bouncing, Sticky Ball - Ball sticks to paddle, letting player aim shots, Giant Ball, Explosive Ball, Ghost Ball - Ball passes through specific colored bricks
+# Extend Paddle, Shrink Paddle, Laser Paddle, Magnet Paddle, Double Paddle - Creates a second paddle above the main one, Color Burst - Destroys all bricks of the same color,
+# Column Clear - Destroys entire vertical column, Row Clear - Destroys entire horizontal row, Shield Bottom - Creates temporary barrier below paddle
+# Extra Life - Gives player additional life, Point Multiplier - Doubles points for limited time, Gravity Change - Temporarily alters ball physics, Brick Shuffle - Rearranges remaining bricks
+# Gold Brick - Requires multiple hits but gives bonus points
+
+# main menu
+
+# local leaderboard
+
+# co op (local)
+# co op (multiplayer)
+
+# 1 vs 1 (each player have ball and he need to pass it to the other side) (multiplayer and local)
+
+# more sounds
+
+# (Tournament system)
+# Team vs Team (2v2, 3v3)
+
+# server
+
+# my music
+
+# world leaderboard
+
+# story mode (levels, bricks that shot, movable bricks, Portal bricks?
+# time mode
+
+# effects:
+# 3d look alike bricks
+# Particle effects for brick breaks
+
+# Ball trail effects
+# make the ball shining (with pulse )
+# Particle sparks on ball bounce
+
+# pulse animation to the bricks
+
+# ball shadow
+# ball lines (rolling effect)
+
+
+# skins (and a shop)
+# Color schemes
+# backgrounds
+# Statistics tracking (total bricks broken, time played)
+# Achievement system
+
+# other:
+# chat while waiting
+# Emotes/Quick chat
+# Spectator mode
+# Match history
+# rank matchmaking
+# logic (and guest mode)
+# Server browser
+# Level editor
+# Control customization
+# Difficulty settings?
