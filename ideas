@@ -36,12 +36,79 @@ ROADMAP:
 # pulse animation to the bricks
 
 # Control customization
-# Statistics tracking (total bricks broken, time played)
+# Statistics tracking:
+    for each mode (and total):
+        - brick brock
+        - hit wall
+        - hit celling
+        - hit paddle
+        - average score
+        - highest score
+        - time played
+        - total games played
+        - each powerup pick timed
+        - clears
+        - Longest game session (for score based)
+        - Fastest clear completion
+        - Most balls active simultaneously
+        - Total balls lost
+        - Longest ball rally
+        - Powerup utilization rate
 
+    - only for 1 vs 1 multiplayer (Win/loss ratio)
+
+# multiple resolutions?
 
 # powerups:
-# Multi-Ball, Fire Ball - Ball breaks through multiple bricks without bouncing, Sticky Ball - Ball sticks to paddle, letting player aim shots, Giant Ball, Explosive Ball, Ghost Ball - Ball passes through specific colored bricks
-# Extend Paddle, Shrink Paddle, Laser Paddle, Magnet Paddle, Double Paddle - Creates a second paddle above the main one, Color Burst - Destroys all bricks of the same color,
-# Column Clear - Destroys entire vertical column, Row Clear - Destroys entire horizontal row, Shield Bottom - Creates temporary barrier below paddle
-# Extra Life - Gives player additional life, Point Multiplier - Doubles points for limited time, Gravity Change - Temporarily alters ball physics, Brick Shuffle - Rearranges remaining bricks
+# Multi-Ball, Fire Ball - Ball breaks through multiple bricks without bouncing, Sticky Ball - Ball sticks to paddle, letting player aim shots, Giant Ball, small Ball
+# Extend Paddle, Shrink Paddle, Laser Paddle, Double Paddle - Creates a second paddle above the main one, Color Burst - Destroys all bricks of the same color,
+# Column Clear - Destroys entire vertical column, Shield Bottom - Creates temporary barrier below paddle
+# Extra Life - Gives player additional life, Point Multiplier - Doubles points for limited time, Ball change - Make the ball faster, Brick Shuffle - Rearranges remaining bricks
 # Gold Brick - Requires multiple hits but gives bonus points
+
+# maybe:
+- Explosive Ball
+# probably not
+- Ghost Ball - Ball passes through specific colored bricks
+
+how to implement the features:
+game modes:
+-   "normal"
+-   timed
+    just like normal but also check time.
+    like normal but display also the time in the text
+    save to different scoreboard
+-   co op
+    just like normal but with two paddles
+-   1 vs 1
+    - no text of score
+    - the layout of the blocks are difrrent
+    - there is two paddles with different places
+    - there is two balls
+
+powerups:
+-   the same for all features. Maybe just add new effects and make some fields public
+
+Control customization:
+-   just get the keys from var and not const
+
+
+Multiplayer:
+
+Main server (keep high scores, and lobbies list)
+| Create new game server
+|
+client <- Game server -> client
+
+each tick:
+    async client -> send controls -> Game server
+    async Game server -> get controls of all the players -> client
+    #
+    client.update(server_controls if server_controls is not None else my_controls)
+    -- next tick --
+    Game server -> send hash of current game tick -> client
+    if client not sync (not the same hash of the game):
+        Game server -> list of all the state of the game (and number of tick)
+    ...
+
+Each tick have time and id. The client get hash of the game tick and check that it have the same tick.
