@@ -6,6 +6,8 @@ from game_object import GameObject
 
 class Brick(GameObject):
     FORCE_LOSE_SPEED = 1
+    OUTLINE_WEIGHT = 5
+    OUTLINE_COLOR_DIFF = Color(50, 50, 50)
 
     def __init__(self, x, y, width, height, screen, color):
         super().__init__(screen)
@@ -30,21 +32,20 @@ class Brick(GameObject):
         # Forces
         self.forces = []
 
-        # Gravity field (can be modified)
-        self.gravity = -0.001 #9.81
+        self.gravity = -0.001
 
     def draw(self):
         pygame.draw.rect(
-            self.screen, self.color, (self.x, self.y, self.width, self.height))
+            self._screen, self.color, (self.x, self.y, self.width, self.height))
 
         pygame.draw.rect(
-            self.screen, self.color - Color(50, 50, 50), (self.x, self.y, self.width, self.height), 5)
+            self._screen, self.color - self.OUTLINE_COLOR_DIFF, (self.x, self.y, self.width, self.height), self.OUTLINE_WEIGHT)
 
-    def add_force(self, fx, fy):
+    def add_force(self, fx: float, fy: float) -> None:
         """Add a force vector (fx, fy) to the object"""
         self.forces.append((fx, fy))
 
-    def update(self, delta_time):
+    def update(self, delta_time: float) -> None:
         # Reset acceleration
         self.ax = 0
         self.ay = 0
@@ -67,4 +68,3 @@ class Brick(GameObject):
         # Update position (x = x0 + vt)
         self.x += self.vx * delta_time
         self.y += self.vy * delta_time
-
