@@ -8,7 +8,6 @@ ROADMAP:
 - clean the code
 - write the todos here
 
-- powerups
 
 - main manu
     - ask for a name in the start of the program
@@ -26,6 +25,8 @@ ROADMAP:
         - make host menu
         - list of servers manu
     - server leaderboard
+
+- powerups
 
 # effects:
 # Rotate brick particle effects
