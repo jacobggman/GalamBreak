@@ -30,11 +30,14 @@ class GameController(GameObject):
 
     @staticmethod
     def _random_color_generator() -> Color:
-        # TODO:
-        #  Fix too dark color
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)
+        how_dark = r + g + b
+        if how_dark < 100:
+            r = min(255, r + 33)
+            g = min(255, g + 33)
+            b = min(255, b + 33)
         return Color(r, g, b)
 
     def _load_game(self, restart_score: bool = True) -> None:
