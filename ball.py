@@ -20,8 +20,10 @@ class Ball(GameObject):
     def draw(self) -> None:
         pygame.draw.circle(self._screen, self.COLOR, (self._x, self._y), self._radius)
 
+    def get_pos(self) -> tuple[float, float]:
+        return self._x, self._y
+
     def update(self, delta_time: float) -> None:
-        # TODO: add collide wall update
         hit_ceiling = self._y - self._radius <= 0
         if hit_ceiling:
             if self._y_vel < 0:

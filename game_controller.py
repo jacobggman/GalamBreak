@@ -5,6 +5,7 @@ from pygame import Color
 
 from ball import Ball
 from brick import Brick
+from falling_brick import FallingBrick
 from game_object import GameObject
 from score_keeper import ScoreKeeper
 from paddle import Paddle
@@ -89,34 +90,18 @@ class GameController(GameObject):
         self._paddle.update(delta_time)
         self._ball.update(delta_time)
 
-        for i, rect in enumerate(self._bricks):
-            if self._ball.collide_brick_update(rect):
+        for i, brick in enumerate(self._bricks):
+            if self._ball.collide_brick_update(brick):
                 self._score_keeper.break_brick()
                 self._bricks.pop(i)
                 pygame.mixer.Sound.play(self._hit_brick_sound)
 
-                # Split brick into small bricks
-                SPLITS = 2
-                FORCE_SCALAR = 0.03
-                for x in range(2 ** SPLITS):
-                    for y in range(2 ** SPLITS):
-                        new_width = rect.width / (2 ** SPLITS)
-                        new_height = rect.height / (2 ** SPLITS)
-                        b = Brick(rect.x + new_width * x, rect.y + new_height * y, new_width, new_height, self._screen,
-                                  rect.color)
-
-                        # TODO: use vector
-                        v = (b.x + b.width) - self._ball._x, (b.y + b.height) - self._ball._y
-                        magnitude = (v[0] ** 2 + v[1] ** 2) ** 0.5
-
-                        b.add_force((v[0] / magnitude) * FORCE_SCALAR, (v[1] / magnitude) * FORCE_SCALAR)
-                        self._falling_bricks.append(b)
+                self._break_brick(brick)
 
         if len(self._bricks) == 0:
             self._load_game(restart_score=False)
 
     def draw(self):
-        # TODO: remove this function (make update function)
         score_surf = self._score_font.render(self._score_msg, False, (64, 64, 64))
         score_rect = score_surf.get_rect(center=(self._screen.width / 2, self._screen.height - 200))
         self._screen.blit(score_surf, score_rect)
@@ -128,3 +113,20 @@ class GameController(GameObject):
         for brick in self._bricks:
             brick.draw()
         self._ball.draw()
+
+    def _break_brick(self, brick: Brick):
+        SPLITS = 2
+        FORCE_SCALAR = 0.03
+        for x in range(2 ** SPLITS):
+            for y in range(2 ** SPLITS):
+                new_width = brick.width / (2 ** SPLITS)
+                new_height = brick.height / (2 ** SPLITS)
+                b = FallingBrick(brick.x + new_width * x, brick.y + new_height * y, new_width, new_height,
+                                 self._screen, brick.color)
+
+                ball_x, ball_y = self._ball.get_pos()
+                v = (b.x + b.width) - ball_x, (b.y + b.height) - ball_y
+                magnitude = (v[0] ** 2 + v[1] ** 2) ** 0.5
+
+                b.add_force((v[0] / magnitude) * FORCE_SCALAR, (v[1] / magnitude) * FORCE_SCALAR)
+                self._falling_bricks.append(b)
