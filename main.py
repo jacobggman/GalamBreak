@@ -9,7 +9,6 @@ FPS = 60
 
 # TODO:
 # Make score text class
-# Make sounds class
 
 
 def main():
@@ -26,21 +25,17 @@ def main():
     while running:
         delta_time = clock.tick(FPS)
 
-        # poll for events
-        # pygame.QUIT event means the user clicked X to close your window
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
-                print(pos)
 
         game.update(delta_time)
 
         screen.fill(Color(BACKGROUND_COLOR))
         game.draw()
 
-        # flip() the display to put your work on screen
         pygame.display.flip()
 
         clock.tick(FPS)  # limits FPS to 60
