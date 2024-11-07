@@ -7,9 +7,6 @@ SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
 BACKGROUND_COLOR = Color(25, 25, 25)
 FPS = 60
 
-# TODO:
-# Make score text class
-
 
 def main():
     pygame.init()
